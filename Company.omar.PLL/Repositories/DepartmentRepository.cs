@@ -13,9 +13,9 @@ namespace Company.omar.PLL.Repositories
     {
         private readonly APPDbContext _context;
 
-        public DepartmentRepository()
+        public DepartmentRepository(APPDbContext context)
         {
-         _context = new APPDbContext();
+            _context = context;
         }
 
         public Department GetDepartment(int id)

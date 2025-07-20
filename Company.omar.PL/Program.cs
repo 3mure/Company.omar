@@ -1,3 +1,8 @@
+using Company.omar.DAL.Data.context;
+using Company.omar.PLL.Interface;
+using Company.omar.PLL.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 namespace Company.omar.PL
 {
     public class Program
@@ -8,6 +13,11 @@ namespace Company.omar.PL
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
+            builder.Services.AddDbContext<APPDbContext>(option => 
+                  option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+                
+            );
 
             var app = builder.Build();
 

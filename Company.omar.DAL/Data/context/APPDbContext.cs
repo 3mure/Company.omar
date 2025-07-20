@@ -11,21 +11,22 @@ namespace Company.omar.DAL.Data.context
 {
     public class APPDbContext : DbContext
     {
-        public APPDbContext() : base()
+        public APPDbContext(DbContextOptions<APPDbContext> options) : base(options)
         {
             
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
 
-            optionsBuilder.UseSqlServer("Server=.;Database=Company.omar; Trusted_Connection=True;TrustServerCertificate = True");
-        }
+        //    optionsBuilder.UseSqlServer("Server=.;Database=Company.omar; Trusted_Connection=True;TrustServerCertificate = True");
+        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<Department>Departments { get; set; }
+         public DbSet<Department> Departments { get; set; }
 
     }
 }
