@@ -7,13 +7,9 @@ using Company.omar.DAL.Model;
 
 namespace Company.omar.PLL.Interface
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentRepository :IGenaricRepository<Department>
     {
-        IEnumerable<Department> GetAllDepartments();
-        Department GetDepartment(int id);
-        int AddDepartment(Department Modle);
-        int UpdateDepartment(Department Modle);
-        int DeleteDepartment(Department Modle);
+       
 
     }
 }

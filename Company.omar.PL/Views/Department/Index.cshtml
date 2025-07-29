@@ -10,6 +10,9 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewData["Title"]</title>
+
+
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -122,9 +125,7 @@
                             <td>@item.code</td>
                             <td>@item.Name</td>
                             <td>@item.CreatedAt.ToString("yyyy-MM-dd")</td>
-                            <td><a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary">Details</a></td>
-                            <td><a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info">Update</a></td>
-                            <td><a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a></td>
+                            <partial name="_Button" model="item.Id"></partial>
                         </tr>
                     }
                 </tbody>

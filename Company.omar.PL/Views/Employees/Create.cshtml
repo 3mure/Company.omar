@@ -1,0 +1,32 @@
+﻿@model Company.omar.DAL.Model.Employee
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+
+<h1>Create</h1>
+
+<h4>Employee</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <partial name="Partialview/_CreateEditView"></partial>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+@section validation {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

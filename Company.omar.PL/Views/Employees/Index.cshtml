@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Company.omar.DAL.Model.Employee>
+
+@{
+   @* ViewData["Title"] = "Index";*@
+   
+
+}
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form>
+    <div>
+        <input type="type" name="SearchInput" class="form-control" placeholder="Search By Name" />
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Search</button>
+	</div>
+</form>
+
+@if (string.IsNullOrEmpty(TempData["Message"] as string ))
+{
+    <div>
+        <div class="alert">
+            <h4>@TempData["Message"]</h4>
+        </div>
+
+    </div>
+
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HiringDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        @if (Model.Any())
+        {
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Date Of Creation</th>
+                        <th>Details</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Age)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Salary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsActive)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IsDeleted)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HiringDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreateAt)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department.Name)
+                            </td>
+                           <partial name="_Button"model="item.Id"></partial>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert">
+                <h4>There are no employee</h4>
+            </div>
+        }
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    </tbody>
+</table>

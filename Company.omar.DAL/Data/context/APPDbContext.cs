@@ -27,6 +27,6 @@ namespace Company.omar.DAL.Data.context
             base.OnModelCreating(modelBuilder);
         }
          public DbSet<Department> Departments { get; set; }
-
+         public DbSet<Employee> Employees { get; set; }
     }
 }

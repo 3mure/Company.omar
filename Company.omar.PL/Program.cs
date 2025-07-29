@@ -14,6 +14,7 @@ namespace Company.omar.PL
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddScoped<IDepartmentRepository,DepartmentRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             builder.Services.AddDbContext<APPDbContext>(option => 
                   option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
                 
