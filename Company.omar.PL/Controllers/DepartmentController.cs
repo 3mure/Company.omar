@@ -16,7 +16,7 @@ namespace Company.omar.PL.Controllers
         }
         public IActionResult Index()
         {
-            var departments = _departmentRepository.GetAllDepartments();
+            var departments = _departmentRepository.GetAll();
             return View(departments);
         }
         [HttpGet]
@@ -38,7 +38,7 @@ namespace Company.omar.PL.Controllers
                     Name = model.Name,
                     CreatedAt = model.CreatedAt
                 };
-                var count = _departmentRepository.AddDepartment(department);
+                var count = _departmentRepository.Add(department);
                 if (count > 0)
                 {
                     return RedirectToAction("Index");
@@ -52,7 +52,7 @@ namespace Company.omar.PL.Controllers
         {
             if (Id == null) { return NotFound(); }
 
-            var department = _departmentRepository.GetDepartment(Id.Value);
+            var department = _departmentRepository.Get(Id.Value);
             if (department==null) { return BadRequest(new { StatusCode = 404 ,Message=$"Department with id {Id} N" }); }
 
             return View(viewName,department);
@@ -72,7 +72,7 @@ namespace Company.omar.PL.Controllers
 
             if (ModelState.IsValid)
             {
-                var IsDepartmentUpdated = _departmentRepository.UpdateDepartment(department);
+                var IsDepartmentUpdated = _departmentRepository.Update(department);
                 if (IsDepartmentUpdated > 0) { return RedirectToAction(nameof(Index)); }
             }
             return View(department);
@@ -92,7 +92,7 @@ namespace Company.omar.PL.Controllers
                 if (department==null) { return BadRequest($"Department With Id Equal {Id} Not Found "); }
                 if (department!=null) 
                 {
-                    var isDeleted = _departmentRepository.DeleteDepartment(department);
+                    var isDeleted = _departmentRepository.Delete(department);
                    if (isDeleted > 0) 
                    {
                         return RedirectToAction(nameof(Index));

@@ -7,21 +7,29 @@
 <br />
 <br />
 <div>
-   <form asp-action="Create"> 
+   <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
        <div class="my-3">
            <label asp-for="code" class="col-form-label"></label>
 			<input asp-for="code" class="form-control" />
+            <span asp-validation-for="code" class="btn-outline-danger"></span>
        </div>
        <div class="my-3">
 			<label asp-for="Name" class="col-form-label"></label>
 			<input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="btn-outline-danger"></span>
        </div>
        <div class="my-3">
            <label asp-for="CreatedAt" class="col-form-label"></label>
 			<input asp-for="CreatedAt" class="form-control" type="datetime-local" />
+			<span asp-validation-for="CreatedAt" class="btn-outline-danger"></span> 
        </div>
 
 		<a asp-action="Index" class="btn btn-secondary">Back to List</a>
 		<button type="submit" class="btn btn-primary">Create</button>
    </form>
 </div>
+@section validation {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

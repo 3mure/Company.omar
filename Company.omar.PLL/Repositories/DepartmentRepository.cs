@@ -9,46 +9,10 @@ using Company.omar.PLL.Interface;
 
 namespace Company.omar.PLL.Repositories
 {
-    public class DepartmentRepository : IDepartmentRepository
+    public class DepartmentRepository : GenaricRepository<Department>, IDepartmentRepository
     {
-        private readonly APPDbContext _context;
-
-        public DepartmentRepository(APPDbContext context)
+        public DepartmentRepository(APPDbContext context) : base(context)
         {
-            _context = context;
         }
-
-        public Department GetDepartment(int id)
-        {
-            return _context.Departments.Find(id); 
-        }
-        public IEnumerable<Department> GetAllDepartments()
-        {
-            return _context.Departments.ToList();
-        }
-        public int AddDepartment(Department Modle)
-        {
-            _context.Departments.Add(Modle);
-           return _context.SaveChanges();
-
-        }
-        
-        public int UpdateDepartment(Department Modle)
-        {
-            _context.Departments.Update(Modle);
-            return _context.SaveChanges();
-        }
-
-        public int DeleteDepartment(Department Modle)
-        {
-            _context.Departments.Remove(Modle);
-            return _context.SaveChanges();
-        }
-
-       
-
-        
-
-        
     }
 }
