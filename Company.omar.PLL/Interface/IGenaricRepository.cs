@@ -11,8 +11,8 @@ namespace Company.omar.PLL.Interface
     {
         IEnumerable<T> GetAll();
         T? Get(int? id);
-        int Add(T Modle);
-        int Update(T Modle);
-        int Delete(T Modle);
+        void Add(T Modle);
+        void Update(T Modle);
+        void Delete(T Modle);
     }
 }
