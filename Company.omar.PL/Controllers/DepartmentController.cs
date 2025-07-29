@@ -9,14 +9,22 @@ namespace Company.omar.PL.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly IDepartmentRepository _departmentRepository;
-        public DepartmentController(IDepartmentRepository repository) : base()
+        private readonly IUnitOfWork _unitOfWork;
+
+        //private readonly IDepartmentRepository _departmentRepository;
+        public DepartmentController(
+            //IDepartmentRepository repository  
+            IUnitOfWork unitOfWork
+            
+            
+            ) : base()
         {
-            _departmentRepository = repository;
+            //_departmentRepository = repository;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            var departments = _departmentRepository.GetAll();
+            var departments = _unitOfWork. departmentRepository.GetAll();
             return View(departments);
         }
         [HttpGet]
@@ -38,7 +46,8 @@ namespace Company.omar.PL.Controllers
                     Name = model.Name,
                     CreatedAt = model.CreatedAt
                 };
-                var count = _departmentRepository.Add(department);
+                 _unitOfWork. departmentRepository.Add(department);
+                var count = _unitOfWork.SaveChanges();
                 if (count > 0)
                 {
                     return RedirectToAction("Index");
@@ -52,7 +61,7 @@ namespace Company.omar.PL.Controllers
         {
             if (Id == null) { return NotFound(); }
 
-            var department = _departmentRepository.Get(Id.Value);
+            var department = _unitOfWork. departmentRepository.Get(Id.Value);
             if (department==null) { return BadRequest(new { StatusCode = 404 ,Message=$"Department with id {Id} N" }); }
 
             return View(viewName,department);
@@ -72,7 +81,8 @@ namespace Company.omar.PL.Controllers
 
             if (ModelState.IsValid)
             {
-                var IsDepartmentUpdated = _departmentRepository.Update(department);
+                _unitOfWork. departmentRepository.Update(department);
+                var IsDepartmentUpdated = _unitOfWork.SaveChanges();
                 if (IsDepartmentUpdated > 0) { return RedirectToAction(nameof(Index)); }
             }
             return View(department);
@@ -92,7 +102,8 @@ namespace Company.omar.PL.Controllers
                 if (department==null) { return BadRequest($"Department With Id Equal {Id} Not Found "); }
                 if (department!=null) 
                 {
-                    var isDeleted = _departmentRepository.Delete(department);
+                   _unitOfWork. departmentRepository.Delete(department);
+                     var isDeleted = _unitOfWork.SaveChanges();
                    if (isDeleted > 0) 
                    {
                         return RedirectToAction(nameof(Index));

@@ -18,16 +18,16 @@ namespace Company.omar.PLL.Repositories
         {
             _context = context;
         }
-        public int Add(T Modle)
+        public void Add(T Modle)
         {
            _context.Set<T>().Add(Modle);
-            return _context.SaveChanges();
+           
         }
 
-        public int Delete(T Modle)
+        public void Delete(T Modle)
         {
             _context.Set<T>().Remove(Modle);
-            return _context.SaveChanges();
+            
         }
 
         //public T? Get(int? id)
@@ -58,10 +58,9 @@ namespace Company.omar.PLL.Repositories
 
         }
 
-        public int Update(T Modle)
+        public void Update(T Modle)
         {
             _context.Set<T>().Update(Modle);
-            return _context.SaveChanges();
         }
     }
 }
